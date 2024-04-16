@@ -37,11 +37,27 @@ th, td {
 /* Styling the login form */
 .login-form {
     width: 300px;
-    margin: 50px auto;
+    margin: 0 auto; /* Centering horizontally */
+    margin-top: 100px; /* Adding margin top to center vertically */
     padding: 20px;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* For absolute positioning of the decorative elements */
+}
+
+/* Decorative animal-themed background */
+.login-form::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    background: url('https://as2.ftcdn.net/v2/jpg/01/91/13/11/1000_F_191131160_YJ6OxSQNPe2q2lHgffWhlHmfb0eAWLAu.jpg') no-repeat center center/cover;
+    border-radius: 10px;
+    z-index: -1;
+    opacity: 0.5; /* Adjust as needed */
 }
 
 /* Styling input fields */
@@ -67,13 +83,13 @@ th, td {
 
 /* Styling the submit button */
 .login-form button[type=submit] {
-    background-color: #4CAF50;
+    background-color: #6b8e23; /* Change to a greenish color resembling nature */
     color: white;
 }
 
 /* Styling the cancel button */
 .login-form button[type=button] {
-    background-color: #f44336;
+    background-color: #cd5c5c; /* Change to a reddish color */
     color: white;
 }
 
@@ -83,4 +99,3 @@ th, td {
     transform: scale(1.05);
     transition: all 0.3s ease;
 }
-
