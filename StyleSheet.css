@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-    background-color: powderblue;
+    background-color:#f3ffe6;
 }
 h1 {
     background-color: mistyrose;
@@ -44,20 +44,6 @@ th, td {
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     position: relative; /* For absolute positioning of the decorative elements */
-}
-
-/* Decorative animal-themed background */
-.login-form::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    width: 100%;
-    height: 100%;
-    background: url('https://as2.ftcdn.net/v2/jpg/01/91/13/11/1000_F_191131160_YJ6OxSQNPe2q2lHgffWhlHmfb0eAWLAu.jpg') no-repeat center center/cover;
-    border-radius: 10px;
-    z-index: -1;
-    opacity: 0.5; /* Adjust as needed */
 }
 
 /* Styling input fields */
