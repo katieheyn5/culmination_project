@@ -11,10 +11,10 @@ $conn = new mysqli($servername, $username, $password, $database);
 
 // Handle login form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = $_POST['Username'];
+    $password = $_POST['Password'];
 
-    $sql = "SELECT * FROM Login WHERE username='$username' and password='$password'";
+    $sql = "SELECT * FROM RegisteredUsers WHERE Username='$username' and Password='$password'";
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);
 
@@ -33,15 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <title>Culmination Project B: Implementation</title>
         <link href="StyleSheet.css" rel="stylesheet" type="text/css">
     </header>
-    
-    <body style="background-image: url('https://as2.ftcdn.net/v2/jpg/01/91/13/11/1000_F_191131160_YJ6OxSQNPe2q2lHgffWhlHmfb0eAWLAu.jpg'); background-repeat: no-repeat; background-attachment: scroll;">  
+
+    <body style="background-image: url('https://as2.ftcdn.net/v2/jpg/01/91/13/11/1000_F_191131160_YJ6OxSQNPe2q2lHgffWhlHmfb0eAWLAu.jpg'); background-repeat: no-repeat; background-attachment: scroll; background-size: cover;">  
         <div class="login-form">
             <form action="" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="Username">Username:</label>
+                <input type="text" id="Username" name="Username" required>
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="Password" required>
                 <button type="submit">Login</button>
+                <button type="submit">Continue as Guest</button>
                 <span><?php if(isset($error)) { echo $error; } ?></span>
             </form>
         </div>
