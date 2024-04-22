@@ -20,8 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($count == 1) {
         $_SESSION['login_user'] = $username;
+        header("Location:userPage.php");    //connect to userPage.php
+        exit();
     } else {
-        $error = "Your Username or Password is incorrect. Please try again.";
+        $error = "Your Username or Password is incorrect. Please try again or continue as guest.";
     }
 }
 ?>
@@ -42,9 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="Password">Password:</label>
                 <input type="password" id="Password" name="Password" required>
                 <button type="submit">Login</button>
-                <button type="submit">Continue as Guest</button>
                 <span><?php if(isset($error)) { echo $error; } ?></span>
             </form>
+            <a href="guestPage.php"><button type="submit">Continue as Guest</button></a>
         </div>
     <?php
     //session variables
