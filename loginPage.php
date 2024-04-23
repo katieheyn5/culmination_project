@@ -18,8 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);
 
-    if ($count == 1) {
+    if ($count == 1) {      //Set session variable
         $_SESSION['login_user'] = $username;
+        $_SESSION['login_password'] = $password;
         header("Location:userPage.php");    //connect to userPage.php
         exit();
     } else {
@@ -48,9 +49,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
             <a href="guestPage.php"><button type="submit">Continue as Guest</button></a>
         </div>
-    <?php
-    //session variables
-    ?>
-
     </body>
 </html>
