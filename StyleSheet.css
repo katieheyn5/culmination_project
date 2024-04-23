@@ -1,9 +1,23 @@
 @charset "UTF-8";
+
+/* Style for the top bar */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
 body {
+    padding-top: 40px; /* So that the body doesn't get covered by the bar */
     background-color:#f3ffe6;
 }
 h1 {
-    background-color: mistyrose;
     color: purple;
     font-family: "Helvetica", sans-serif;
 }
@@ -32,6 +46,77 @@ th, td {
     padding: 8px;
     text-align: left;
     width: fit-content;
+}
+
+.button-like {
+  border: 2px solid #8a8a8a;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 1rem;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+  border-radius: 3rem;
+  color: #8a8a8a;
+  transition: all ease 0.4s;
+}
+
+.button-like span {
+  margin-left: 0.5rem;
+}
+
+.button-like .fa,
+.button-like span {
+  transition: all ease 0.4s;
+}
+
+.button-like:focus {
+  background-color: transparent;
+}
+
+.button-like:focus .fa,
+.button-like:focus span {
+  color: #8a8a8a;
+}
+
+.button-like:hover {
+  border-color: #cc4b37;
+  background-color: transparent;
+}
+
+.button-like:hover .fa,
+.button-like:hover span {
+  color: #cc4b37;
+}
+
+.liked {
+  background-color: #cc4b37;
+  border-color: #cc4b37;
+}
+
+.liked .fa,
+.liked span {
+  color: #fefefe;
+}
+
+.liked:focus {
+  background-color: #cc4b37;
+}
+
+.liked:focus .fa,
+.liked:focus span {
+  color: #fefefe;
+}
+
+.liked:hover {
+  background-color: #cc4b37;
+  border-color: #cc4b37;
+}
+
+.liked:hover .fa,
+.liked:hover span {
+  color: #fefefe;
 }
 
 /* Styling the login form */
@@ -85,3 +170,4 @@ th, td {
     transform: scale(1.05);
     transition: all 0.3s ease;
 }
+
