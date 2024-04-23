@@ -21,10 +21,9 @@ h1 {
     color: purple;
     font-family: "Helvetica", sans-serif;
 }
-#p1 {
-    color: purple;
-    font-family: "Monaco", monospace;
-}
+h2 {
+    color: #ABEBC6;
+    font-family: "Helvetica", sans-serif;
 p {
     color: royalblue;
     font-family: "Lucida Console", "Courier New", monospace;

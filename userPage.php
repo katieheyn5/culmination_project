@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION['Username'])) {
-    echo "You are logged in " . $_SESSION['Username'];
+if(isset($_SESSION['login_user'])) {
+    echo "You are logged in " . $_SESSION['login_user'];
 }
 ?>
 
@@ -14,6 +14,10 @@ if(isset($_SESSION['Username'])) {
     </header>
 
     <body>
+    <div class="top-bar">
+        <h2>Hello <?php echo $_SESSION["login_user"]; ?></h2>
+    </div>
+
     <?php
     $servername = "localhost";
     $username = "aswann2";
@@ -34,7 +38,7 @@ if(isset($_SESSION['Username'])) {
         <div style="text-align: center;" class="wrapper">
             <img src="https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg">
             <p></p>
-            <button class="like-btn" id="like-btn1">Like</button>
+            <button class="like-btn" id="like-btn">Like</button>
             <script>
                 const likeButtons = document.querySelectorAll('.like-btn');
 
