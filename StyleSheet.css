@@ -48,77 +48,6 @@ th, td {
     width: fit-content;
 }
 
-.button-like {
-  border: 2px solid #8a8a8a;
-  background-color: transparent;
-  text-decoration: none;
-  padding: 1rem;
-  position: relative;
-  vertical-align: middle;
-  text-align: center;
-  display: inline-block;
-  border-radius: 3rem;
-  color: #8a8a8a;
-  transition: all ease 0.4s;
-}
-
-.button-like span {
-  margin-left: 0.5rem;
-}
-
-.button-like .fa,
-.button-like span {
-  transition: all ease 0.4s;
-}
-
-.button-like:focus {
-  background-color: transparent;
-}
-
-.button-like:focus .fa,
-.button-like:focus span {
-  color: #8a8a8a;
-}
-
-.button-like:hover {
-  border-color: #cc4b37;
-  background-color: transparent;
-}
-
-.button-like:hover .fa,
-.button-like:hover span {
-  color: #cc4b37;
-}
-
-.liked {
-  background-color: #cc4b37;
-  border-color: #cc4b37;
-}
-
-.liked .fa,
-.liked span {
-  color: #fefefe;
-}
-
-.liked:focus {
-  background-color: #cc4b37;
-}
-
-.liked:focus .fa,
-.liked:focus span {
-  color: #fefefe;
-}
-
-.liked:hover {
-  background-color: #cc4b37;
-  border-color: #cc4b37;
-}
-
-.liked:hover .fa,
-.liked:hover span {
-  color: #fefefe;
-}
-
 /* Styling the login form */
 .login-form {
     width: 300px;
@@ -169,5 +98,26 @@ th, td {
     opacity: 0.9;
     transform: scale(1.05);
     transition: all 0.3s ease;
+}
+
+/* This is the style for the like button */
+.like-btn {
+    padding: 10px 20px;
+    background-color: #2980B9;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+.like-btn:hover {
+    background-color: #2980B9;
+}
+
+.like-btn.liked {
+    background-color: #2ecc71;
 }
 

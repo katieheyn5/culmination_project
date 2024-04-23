@@ -34,11 +34,21 @@ if(isset($_SESSION['Username'])) {
         <div style="text-align: center;" class="wrapper">
             <img src="https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg">
             <p></p>
-            <button class="button button-like">
-                <i class="fa fa-heart"></i>
-                <span>Like</span>
-                <a class="liked" href="#"></a>
-            </button>
+            <button class="like-btn" id="like-btn1">Like</button>
+            <script>
+                const likeButtons = document.querySelectorAll('.like-btn');
+
+                likeButtons.forEach((button) => {
+                    button.addEventListener('click', () => {
+                        let liked = button.classList.toggle('liked');
+                        if (liked) {
+                            button.textContent = 'Liked';
+                        } else {
+                            button.textContent = 'Like';
+                        }
+                    });
+                });
+            </script>
             <p></p>
         </div>
 
