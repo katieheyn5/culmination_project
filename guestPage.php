@@ -10,11 +10,7 @@
         <div class="top-bar">
             <h2>Hello!</h2>
             <nav>
-                <ul>
-                    <li>
-                        <a href="loginPage.php">Login</a>
-                    </li>
-                </ul>
-             </nav>
+                <a href="loginPage.php">Login</a>
+            </nav>
         </div>
 
