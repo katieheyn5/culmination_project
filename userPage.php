@@ -1,8 +1,17 @@
 <?php
 session_start();
-if(isset($_SESSION['login_user'])) {
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: loginPage.php');
+    exit();
 }
-$user = $_SESSION['login_user'];
+
+if (!isset($_SESSION['login_user'])) {
+    header('Location: loginPage.php');
+    exit();
+}
+
 ?>
 
 <!DOCTYPE HTML>
@@ -16,6 +25,12 @@ $user = $_SESSION['login_user'];
     <body>
     <div class="top-bar">
         <h2>Hello User!</h2>
+        <nav>
+            <a href="?insert">Insert Data</a>
+            <a href="?update">Update Data</a>
+            <a href="?delete">Delete Data</a>
+            <a href="?logout">Logout</a>
+        </nav>
     </div>
 
     <?php
@@ -26,26 +41,27 @@ $user = $_SESSION['login_user'];
 
     $con = mysqli_connect($servername, $username, $password, $database);
 
-    $query = "SELECT a.*, b.Breed, i.*, o.* FROM Animal a
-              LEFT JOIN Breed b ON a.Breed = b.BreedID
-              LEFT JOIN Intake i ON a.Intake = i.IntakeID
-              LEFT JOIN Outcome o ON a.Outcome = o.OutcomeID";
+    if (isset($_GET['insert'])) {
+        // Code for create data form
+    } elseif (isset($_GET['update'])) {
+        // Code for update data form
+    } elseif (isset($_GET['delete'])) {
+        // Code for delete data form
+    } else {
+        $query = "SELECT a.*, b.Breed, i.*, o.*, p.PictureLink FROM Animal AS a
+                LEFT JOIN Breed AS b ON a.Breed = b.BreedID
+                LEFT JOIN Intake AS i ON a.Intake = i.IntakeID
+                LEFT JOIN Outcome AS o ON a.Outcome = o.OutcomeID
+                LEFT JOIN Pictures AS p ON a.Pictures = p.PicturesID";
 
     $result = mysqli_query($con, $query);
 
     while ($row = mysqli_fetch_assoc($result)) {
         ?>
-        <div style="text-align: center;" class="wrapper">
-            <?php if($row['AnimalID'] == $row['PicturesID']){ ?>
-                      <img src=<?php echo $row['PictureLink'];?>>
-             <?php
-                   }
-                   else{ ?>
-                      <img src="https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fR    jgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg">
-             <?php } ?>
-              <img src=<?php echo $row['PictureLink'];?>>
-
+        <div class="wrapper">
+            <img src="<?php echo $row['PictureLink'] ?? 'https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg';?>" class="animal-image"> 
             <p></p>
+
             <button class="like-btn" id="like-btn">Like</button>
             <script>
                 const likeButtons = document.querySelectorAll('.like-btn');
@@ -96,8 +112,8 @@ $user = $_SESSION['login_user'];
         <hr style="width:55%">
         <p></p>
         <?php
+        }
     }
-
     mysqli_close($con);
     ?>
 

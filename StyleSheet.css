@@ -16,11 +16,13 @@
 }
 .top-bar h2 {
     margin: 0;
+    margin-left: 20px;
     color: #ABEBC6;
     font-family: "Helvetica", sans-serif;
 }
 .top-bar a {
     margin: 0;
+    margin-right: 20px;
     color: #ABEBC6;
     font-family: "Helvetica", sans-serif;
 }
