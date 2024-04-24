@@ -24,7 +24,7 @@ if (!isset($_SESSION['login_user'])) {
 
     <body>
     <div class="top-bar">
-        <h2>Hello User!</h2>
+        <h2>Hello <?php echo $_SESSION["login_user"]; ?>!</h2>
         <nav>
             <a href="?insert">Insert Data</a>
             <a href="?update">Update Data</a>
