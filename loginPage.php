@@ -38,6 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <body style="background-image: url('https://as2.ftcdn.net/v2/jpg/01/91/13/11/1000_F_191131160_YJ6OxSQNPe2q2lHgffWhlHmfb0eAWLAu.jpg'); background-repeat: no-repeat; background-attachment: scroll; background-size: cover;">  
+
+       <div class="top-bar">
+            <h2>Hello! Here you will find all the information about the animals in our shelter. </h2>
+        </div>
+
         <div class="login-form">
             <form action="" method="post">
                 <label for="Username">Username:</label>
