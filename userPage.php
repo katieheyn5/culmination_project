@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['login_user'])) {
 }
+$user = $_SESSION['login_user'];
 ?>
 
 <!DOCTYPE HTML>
@@ -14,7 +15,7 @@ if(isset($_SESSION['login_user'])) {
 
     <body>
     <div class="top-bar">
-        <h2>Hello <?php echo $_SESSION["login_user"]; ?></h2>
+        <h2>Hello User!</h2>
     </div>
 
     <?php
@@ -35,7 +36,15 @@ if(isset($_SESSION['login_user'])) {
     while ($row = mysqli_fetch_assoc($result)) {
         ?>
         <div style="text-align: center;" class="wrapper">
-            <img src="https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg">
+            <?php if($row['AnimalID'] == $row['PicturesID']){ ?>
+                      <img src=<?php echo $row['PictureLink'];?>>
+             <?php
+                   }
+                   else{ ?>
+                      <img src="https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fR    jgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg">
+             <?php } ?>
+              <img src=<?php echo $row['PictureLink'];?>>
+
             <p></p>
             <button class="like-btn" id="like-btn">Like</button>
             <script>
