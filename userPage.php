@@ -62,21 +62,7 @@ if (!isset($_SESSION['login_user'])) {
             <img src="<?php echo $row['PictureLink'] ?? 'https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg';?>" class="animal-image"> 
             <p></p>
 
-            <button class="like-btn" id="like-btn">Like</button>
-            <script>
-                const likeButtons = document.querySelectorAll('.like-btn');
-
-                likeButtons.forEach((button) => {
-                    button.addEventListener('click', () => {
-                        let liked = button.classList.toggle('liked');
-                        if (liked) {
-                            button.textContent = 'Liked';
-                        } else {
-                            button.textContent = 'Like';
-                        }
-                    });
-                });
-            </script>
+            <button class="like-btn">Like</button>
             <p></p>
         </div>
 
@@ -117,5 +103,18 @@ if (!isset($_SESSION['login_user'])) {
     mysqli_close($con);
     ?>
 
+    <script>
+        const likeButtons = document.querySelectorAll('.like-btn');
+        likeButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                let liked = button.classList.toggle('liked');
+                if (liked) {
+                    button.textContent = 'Liked';
+                } else {
+                    button.textContent = 'Like';
+                }
+            });
+        });
+    </script>
     </body>
 </html>
