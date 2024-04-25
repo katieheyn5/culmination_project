@@ -47,21 +47,9 @@ if (!isset($_SESSION['login_user'])) {
     } elseif (isset($_GET['update'])) { 
         header('Location: update.php');
         exit();
-    ?>
-    <?php
-    } elseif (isset($_GET['delete'])) { ?>
-        <form method="post">
-           <label for="name">Animal Name:</label>
-           <input type="text" id="name" name="name" required><br>
-           <input type="submit" name="Delete Animal" value="Submit">
-        </form>
-        <?php
-        $deleteAnimalQuery = "DELETE ";
-        if (mysqli_query($con, $deleteAnimalQuery)) {
-         echo "Record deleted successfully";
-        } else {
-         echo "Error: " . $deleteAnimalQuery . "<br>" . mysqli_error($con);
-        }
+    } elseif (isset($_GET['delete'])) {
+        header('Location: delete.php');
+        exit();
     } else {
         $query = "SELECT a.*, b.Breed, i.*, o.*, p.PictureLink FROM Animal AS a
                 LEFT JOIN Breed AS b ON a.Breed = b.BreedID

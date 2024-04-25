@@ -36,11 +36,10 @@ if (!isset($_SESSION['login_user'])) {
     $database = "Team_Elephant";
 
     $con = mysqli_connect($servername, $username, $password, $database);
-
-    if (isset($_GET['insert'])) {
     ?>
-        <div class="wrapper">
-        <form method="post">
+
+    <div class="wrapper">
+    `   <form method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
 
@@ -53,37 +52,51 @@ if (!isset($_SESSION['login_user'])) {
             <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob"><br>
 
-            <label for="intake">Intake Type:</label>
-            <input type="text" id="intake" name="intake"><br>
+            <label for="iCondition">Intake Condition:</label>
+            <input type="text" id="iCondition" name="iCondition"><br>
 
-            <label for="outcome">Outcome Type:</label>
-            <input type="text" id="outcome" name="outcome"><br>
+            <label for="iType">Intake Type:</label>
+            <input type="text" id="iType" name="iType"><br>
 
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select><br>
+            <label for="iFound">Found:</label>
+            <input type="text" id="iFound" name="iType"><br>
 
+            <label for="iDateFound">Date Found:</label>
+            <input type="text" id="iDateFound" name="iDateFound"><br>
+
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age"><br>
+
+            <label for="oDate">Outcome Date:</label>
+            <input type="text" id="oDate" name="oDate"><br>
+
+            <label for="oType">Outcome Type:</label>
+            <input type="text" id="oType" name="oType"><br>            
+        
             <input type="submit" name="submit" value="Add New Animal">
         </form>
     </div>
-    <?php }
+
+    <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_POST['name'];
         $breed = $_POST['breed'];
         $color = $_POST['color'];
         $dob = $_POST['dob'];
-        $intake = $_POST['intake'];
-        $outcome = $_POST['outcome'];
-        $gender = $_POST['gender'];
+        $iCondition = $_POST['iCondition'];
+        $iType = $_POST['iType'];
+        $iFound = $_POST['iFound'];
+        $iDateFound = $POST['iDateFound'];
+        $age = $_POST['age'];
+        $oDate = $_POST['oDate'];
+        $oType = $_POST['oType'];
 
         $insertBreedQuery = "INSERT INTO Breed (Breed) VALUES ('$breed') ON DUPLICATE KEY UPDATE BreedID = LAST_INSERT_ID(BreedID)";
         mysqli_query($con, $insertBreedQuery);
         $breedID = mysqli_insert_id($con);
 
         // Insert into Intake table if intake does not already exist
-        $insertIntakeQuery = "INSERT INTO Intake (IntakeType) VALUES ('$intake') ON DUPLICATE KEY UPDATE IntakeID = LAST_INSERT_ID(IntakeID)";
+        $insertIntakeQuery = "INSERT INTO Intake (IntakeType) VALUES ('$iType') ON DUPLICATE KEY UPDATE IntakeID = LAST_INSERT_ID(IntakeID)";
         mysqli_query($con, $insertIntakeQuery);
         $intakeID = mysqli_insert_id($con);
 
@@ -102,22 +115,9 @@ if (!isset($_SESSION['login_user'])) {
             echo "Error: " . $insertAnimalQuery . "<br>" . mysqli_error($con);
         }
 
-    } elseif (isset($_GET['update'])) { ?>
-        <select>
-            <option value="Name">Name</option>}
-            <option value="Breed">Animal Breed</option>
-            <option value="Color">Animal Color</option>
-            <option value="DateOfBirth">DOB</option>
-            <option value="Condition">Intake Condition</option>
-            <option value="IntakeType">Intake Type</option>
-            <option value="FoundLocation">Location Found</option>
-            <option value="IntakeAge">FoundDate</option>
-            <option value="OutcomeAge">Outcome Age</option>
-            <option value="OutcomeDate">OutcomeDate</option>
-            <option value="OutcomeType">Outcome Type</option>
-        </select>
+    } ?>
+
     <?php
-    }
     mysqli_close($con);
     ?>
 
