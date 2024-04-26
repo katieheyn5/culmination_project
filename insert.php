@@ -36,10 +36,16 @@ if (!isset($_SESSION['login_user'])) {
     $database = "Team_Elephant";
 
     $con = mysqli_connect($servername, $username, $password, $database);
+
+    // Check connection
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
     ?>
 
-    <div class="wrapper">
-    `   <form method="post">
+    <div class="login-form">
+        <form method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
 
@@ -59,7 +65,7 @@ if (!isset($_SESSION['login_user'])) {
             <input type="text" id="iType" name="iType"><br>
 
             <label for="iFound">Found:</label>
-            <input type="text" id="iFound" name="iType"><br>
+            <input type="text" id="iFound" name="iFound"><br>
 
             <label for="iDateFound">Date Found:</label>
             <input type="text" id="iDateFound" name="iDateFound"><br>
@@ -71,8 +77,8 @@ if (!isset($_SESSION['login_user'])) {
             <input type="text" id="oDate" name="oDate"><br>
 
             <label for="oType">Outcome Type:</label>
-            <input type="text" id="oType" name="oType"><br>            
-        
+            <input type="text" id="oType" name="oType"><br>
+
             <input type="submit" name="submit" value="Add New Animal">
         </form>
     </div>
@@ -86,28 +92,33 @@ if (!isset($_SESSION['login_user'])) {
         $iCondition = $_POST['iCondition'];
         $iType = $_POST['iType'];
         $iFound = $_POST['iFound'];
-        $iDateFound = $POST['iDateFound'];
+        $iDateFound = date('Y-m-d H:i:s', strtotime($_POST['iDateFound']));
         $age = $_POST['age'];
-        $oDate = $_POST['oDate'];
+        $oDate = date('Y-m-d H:i:s', strtotime($_POST['oDate']));
         $oType = $_POST['oType'];
 
+        // Insert Breed if it doesn't exist
         $insertBreedQuery = "INSERT INTO Breed (Breed) VALUES ('$breed') ON DUPLICATE KEY UPDATE BreedID = LAST_INSERT_ID(BreedID)";
         mysqli_query($con, $insertBreedQuery);
         $breedID = mysqli_insert_id($con);
 
-        // Insert into Intake table if intake does not already exist
-        $insertIntakeQuery = "INSERT INTO Intake (IntakeType) VALUES ('$iType') ON DUPLICATE KEY UPDATE IntakeID = LAST_INSERT_ID(IntakeID)";
+        // Insert Intake if it doesn't exist
+        $insertIntakeQuery = "INSERT INTO Intake (Animal_Condition, IntakeType, FoundLocation, IntakeDate, IntakeAge) 
+                              VALUES ('$iCondition', '$iType', '$iFound', '$iDateFound', '$age') 
+                              ON DUPLICATE KEY UPDATE IntakeID = LAST_INSERT_ID(IntakeID)";
         mysqli_query($con, $insertIntakeQuery);
         $intakeID = mysqli_insert_id($con);
 
-        // Insert into Outcome table if outcome does not already exist
-        $insertOutcomeQuery = "INSERT INTO Outcome (OutcomeType) VALUES ('$outcome') ON DUPLICATE KEY UPDATE OutcomeID = LAST_INSERT_ID(OutcomeID)";
+        // Insert Outcome if it doesn't exist
+        $insertOutcomeQuery = "INSERT INTO Outcome (OutcomeType, OutcomeDate, OutcomeAge) 
+                               VALUES ('$oType', '$oDate', '$age') 
+                               ON DUPLICATE KEY UPDATE OutcomeID = LAST_INSERT_ID(OutcomeID)";
         mysqli_query($con, $insertOutcomeQuery);
         $outcomeID = mysqli_insert_id($con);
 
-        // Insert into Animal table
-        $insertAnimalQuery = "INSERT INTO Animal (Name, Breed, Color, DateOfBirth, Intake, Outcome, Gender)
-                              VALUES ('$name', '$breedID', '$color', '$dob', '$intakeID', '$outcomeID', '$gender')";
+        // Insert Animal
+        $insertAnimalQuery = "INSERT INTO Animal (Name, AnimalType, Breed, Color, DateOfBirth, Intake, Outcome) 
+                              VALUES ('$name', '1', '$breedID', '$color', '$dob', '$intakeID', '$outcomeID')";
 
         if (mysqli_query($con, $insertAnimalQuery)) {
             echo "New record inserted successfully";
